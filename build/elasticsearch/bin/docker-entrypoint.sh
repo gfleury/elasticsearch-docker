@@ -31,6 +31,10 @@ if [[ "$1" != "eswrapper" ]]; then
         # `bin/elasticsearch -E x.y=z` would not work.
         set -- "elasticsearch" "${@:2}"
         # Use chroot to switch to UID 1000
+    elif [[ "$1" == "tsuru" ]]; then
+	es_opts=$(echo -n $ES_OPTS|base64 -d -)
+        set -- "/usr/share/elasticsearch/bin/elasticsearch" ${es_opts}
+        # Use chroot to switch to UID 1000
         exec chroot --userspec=1000 / "$@"
     else
         # User probably wants to run something else, like /bin/bash, with another uid forced (Openshift?)
