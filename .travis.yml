@@ -14,7 +14,7 @@ env:
   - secure: UNolzyAQDp4OZ+4kKIXn7O1CBVrrz1y78gCpxzX5A1L8oCYr/7zgE3VKOCR2lR1SPn7+oKPT2Jo0XD07hKPag1IQXRZC3SZ6RQ3Ud4fm0auoDUtpDDl2mHYkkuEimCu/+fORQZ5DIwku/Zt3LNASajcaeka9YoeLx3zV5PNONHRMHywGIFMGxYH/FSDPibHsaPN8epaeYRAJipsSJZ960qpax25JS+GA7b0hHmxRDhN2YhT1YwqDb3sSl18fRJVpOg0GtvoYWBzzCeraFTXpHEVGK2YQkLrer+Ng7TpUQnI375mYDiMuRob8YCvN1TJlTgs7Gi8AvjOdPbeIj/G/bZiFZvNSjBY2LW5/+mWYZ2WqBhuGtFkUUXYzSv71tIQAMDD2sY98nBpL3CB4Vny84Bk+ZRmuxb7doPWVgVQKFfkyC9Z0vHCnRCz+pOrY2c1oHjbfp4rosZ+L8zHUcJ7ssU1EH/W77c50MX5tPaTEWI3LaHpcDiV0K4EyTpTeWjbJDXvMQRodv8mIowy2UTKLZ9iuicV9mm/YpqXtbq7UhOEX8gYac3ytIdx+sMD1qto7uywAXsOV0Ov9KZN7wJGMH5HSXoPoXwsH21Oz8LMBxeQRfoyFzVej9cEt1IL9t+Fp0ZHBw1n2Muet+hkyE7LROD/pr6IBYPXFpMnDQddqXxI=
 script: make dockerfile
 after_success:
-- docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+- docker login -u $DOCKER_USER -p $DOCKER_PASS
 - export REPO=gfleury/elasticsearch-oss
 - export TAG=`if [ "$TRAVIS_BRANCH" == "es_tsuru" ]; then echo "latest"; else echo
   $TRAVIS_BRANCH ; fi`
